@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="p-4 m-4">
+            <div class="col-lg-5 mx-auto border rounded pt-4">
+                <form action="" method="post">{% csrf_token %}
+                    <h3 class='alert alert-light'>Create an Account</h3>
+                    <div class="form-group">
+                      <label for="fname">First Name</label>
+                      <input type="text" name="fname" class="form-control form-control-sm" value="{{value.fname}}" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="lname">Last Name</label>
+                      <input type="text" name="lname" class="form-control form-control-sm" value="{{value.lname}}" required>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="tel" name="phone" class="form-control form-control-sm" value="{{value.phone}}" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" name="email" class="form-control form-control-sm" placeholder="example@email.com" value="{{value.email}}" required>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" name="password" class="form-control form-control-sm" placeholder="*********" required>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="conpassword">Confirm Password</label>
+                      <input type="password" name="conpassword" class="form-control form-control-sm" placeholder="*********" required>
+                    </div>
+                    {% if flag %}
+                    <div class="alert alert-warning" role="alert">
+                      <h6 class="alert-heading">{{flag}}</h6>
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control-md">Create Account</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

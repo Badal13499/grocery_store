@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class="container mt-5">
+            <!-- top -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>View Grocery List</h1>
+                    <a href="/add">Add Item</a>
+                </div>
+
+                <div class="col-lg-6 float-right">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form method="post" action="/filter/">
+                                {% csrf_token %}
+                            <input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="submit" class="btn btn-danger" value="filter">
+                        </div>
+                        <div class="col-lg-4">
+                         </form>
+                        <form method="post" action="/filter/">
+                            {% csrf_token %}
+                            <input type="number" class="form-control" value="1" name="flag" hidden>
+                            <input type="submit" class="btn btn-danger" value="Clear">
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // top -->
+            <!-- Grocery Cards -->
+            <div class="row mt-4">
+                {% for item in items %}
+                <div class="col-lg-4 p-2">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">{{item.item_name}}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{item.item_quantity}}</h6>
+
+                            <p class="text-success">{{item.item_status}}</p>
+
+                            <form method="post" action="/update/">
+                                {% csrf_token %}
+                                <input type="text" value="{{item.key}}" name="key_value" hidden>
+                                <input type="submit" value="Update" style="border: none; background: transparent; color: blue; float:left;">
+                            </form>
+                            <form method="post" action="/delete/">
+                                {% csrf_token %}
+                                <input type="text" value="{{item.key}}" name="key_value" hidden>
+                                <input type="submit" class="mx-4" value="Delete" style="border: none; background: transparent; color: blue;">
+
+                            </form>
+                        </div>
+                      </div>
+                </div>
+                <script>
+
+                </script>
+               {% endfor %}
+
+
+
+
+            </div>
+        </div>
+{% endblock %}
